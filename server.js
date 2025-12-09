@@ -16,7 +16,7 @@ let server;
 
 mongoose
   .connect(DB, {
-    serverSelectionTimeoutMS: 5000, // fail fast on server selection
+    serverSelectionTimeoutMS: 30000, // allow up to 30s for server selection (Atlas may be slower)
     socketTimeoutMS: 45000, // 45 seconds for actual queries
     maxPoolSize: 10,
     minPoolSize: 5,
