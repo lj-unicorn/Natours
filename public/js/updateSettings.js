@@ -1,4 +1,3 @@
-import axios from "axios";
 import { showAlert } from "./alert.js";
 
 //type is either "password" or "data"
@@ -9,19 +8,26 @@ export const updateSettings = async (data, type) => {
         ? "/api/v1/users/updateMyPassword"
         : "/api/v1/users/updateMe";
 
-    const res = await axios({
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
+    const res = await fetch(url, {
       method: "PATCH",
-      url,
-      data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
 
-    if (res.data.status === "success") {
+    const json = await res.json();
+
+    if (json.status === "success") {
       showAlert(
         "success",
         `${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} updated successfully`,
       );
+    } else {
+      showAlert("error", json.message);
     }
   } catch (err) {
-    showAlert("error", err.response.data.message);
+    showAlert("error", err.message);
   }
 };

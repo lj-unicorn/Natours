@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import  User  from "../models/userModel.js";
+import User from "../models/userModel.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import AppError from "../utils/appError.js";
 import { promisify } from "util";
@@ -200,14 +200,12 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   });
 });
 
-
 export const resetPassword = asyncHandler(async (req, res, next) => {
   // 1. Get user based on the token
   const hashedToken = crypto
     .createHash("sha256")
     .update(req.params.token)
     .digest("hex");
-
 
   const user = await User.findOne({
     passwordResetToken: hashedToken,

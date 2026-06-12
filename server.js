@@ -1,3 +1,4 @@
+import "./config/dns.js"
 import app from "./app.js";
 import mongoose from "mongoose";
 
@@ -9,7 +10,7 @@ process.on("uncaughtException", (err) => {
 
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
-  process.env.DATABASE_PASSWORD,
+  process.env.DATABASE_PASSWORD.trim(),
 );
 
 let server;

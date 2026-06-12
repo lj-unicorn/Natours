@@ -16,6 +16,8 @@ import { globalErrorHandler } from "./controllers/errorHandler.js";
 import { router as viewRouter } from "./routes/viewRotues.js";
 import { router as bookingRouter } from "./routes/bookingRoutes.js";
 import { resolvePath } from "./utils/pathHelper.js";
+// eslint-disable-next-line no-unused-vars
+import { CLIENT_RENEG_LIMIT } from "tls";
 
 const app = express();
 
@@ -26,6 +28,10 @@ app.set("views", resolvePath("./views"));
 
 // Serving static files
 app.use(express.static(resolvePath("public")));
+
+app.use("/.well-known", (req, res) => {
+  res.status(404).end();
+});
 
 // Set security HTTP header
 app.use(

@@ -864,12 +864,11 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
-@media only screen and (max-width: 37.5em) {
+@media (max-width: 37.5em) {
   .nav {
+    gap: 1rem;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
   }
 }
 .nav--tours {
@@ -1402,7 +1401,7 @@ body {
 
 @media (max-width: 600px) {
   .nav {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
   .nav__el:not(:last-child) {

@@ -19,8 +19,8 @@ export class Email {
         auth: {
           user: process.env.SENDGRID_USERNAME,
           pass: process.env.SENDGRID_PASSWORD,
-        }
-      })
+        },
+      });
     }
 
     return nodemailer.createTransport({
@@ -59,7 +59,7 @@ export class Email {
   }
 
   async sendWelcome() {
-    await this.send("elcome", "Welcome to the Natours family!");
+    await this.send("welcome", "Welcome to the Natours family!");
   }
 
   async sendPasswordReset() {
